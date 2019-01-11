@@ -7,15 +7,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       videoListing: exampleVideoData,
-      singleVideo: exampleVideoData[0]
+      singleVideo: exampleVideoData[0],
     };
   }
-  // onVideoClick = () => {
-  //   this.setState ({
-  //     // singleVideo = exampleVideoData[1]
-  //   });
-  //   console.log('onVideoClick')
-  // }
+  onVideoClick () {
+    this.setState ({
+      singleVideo: exampleVideoData[4]
+    });
+    console.log('onVidClick');
+  }
   // onVideoClick() {
   //   // this.setState ({
   //   //   // singleVideo = exampleVideoData[1]
@@ -35,7 +35,7 @@ class App extends React.Component {
             <div><h5><em><VideoPlayer video={this.state.singleVideo}/></em></h5></div>
           </div>
           <div className="col-md-5">
-            <div><h5><em><VideoList videos={this.state.videoListing}/></em></h5></div>
+            <div><h5><em><VideoList videos={this.state.videoListing} func={this.onVideoClick}/></em></h5></div>
           </div>
         </div>
       </div>
