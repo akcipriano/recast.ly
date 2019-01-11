@@ -1,15 +1,59 @@
 import VideoList from './VideoList.js';
 import exampleVideoData from '../data/exampleVideoData.js';
 import VideoPlayer from './VideoPlayer.js';
+import searchYouTube from '../lib/searchYouTube.js';
+import YOUTUBE_API_KEY from '../config/youtube.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videoListing: exampleVideoData,
+      videoListing: [],
       singleVideo: exampleVideoData[0],
+      object: {
+        q: 'pets',
+        maxResults: 5,
+        key: YOUTUBE_API_KEY
+      }
     };
   }
+
+  componentDidMount () {
+    console.log('Component did mount');
+    searchYouTube(this.state.object, function () {
+      this.setState ({
+        videoListing: data
+      });
+    });
+  }
+
+  // data: {
+  //   part: 'snippet',
+  //   q: options.query,
+  //   maxResults: options.max,
+  //   videoEmbeddable: true,
+  //   key: options.key,
+  //   type: 'video'
+  // },
+
+  // var searchYouTube = (options, callback) => {
+  //   $.ajax({
+  //     url: 'https://www.googleapis.com/youtube/v3/search',
+  //     type: 'GET',
+  //     data: {
+  //       part: 'snippet',
+  //       q: options.query,
+  //       maxResults: options.max,
+  //       videoEmbeddable: true,
+  //       key: options.key,
+  //       type: 'video'
+  //     },
+  //     success: function (data) {
+  //       return callback(data.items);
+  //     }
+  //   });
+
+
   onVideoClick (video) {
     this.setState ({
       singleVideo: video
