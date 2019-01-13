@@ -13,31 +13,7 @@ var searchYouTube = (options, callback) => {
     success: function (data) {
       return callback(data.items);
     }
-
-
   });
-
 };
 
 export default searchYouTube;
-// buildApiRequest('GET',
-//                 '/youtube/v3/search',
-//                 {'maxResults': '25',
-//                  'part': 'snippet',
-//                  'q': 'surfing',
-//                  'type': ''});
-
-
-
-// readAll: function(successCB, errorCB = null) {
-//   $.ajax({
-//     url: Parse.server,
-//     type: 'GET',
-//     data: { order: '-createdAt' },
-//     contentType: 'application/json',
-//     success: successCB,
-//     error: errorCB || function(error) {
-//       console.error('chatterbox: Failed to fetch messages', error);
-//     }
-//   });
-// }
