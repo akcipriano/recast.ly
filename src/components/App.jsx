@@ -62,24 +62,6 @@ class App extends React.Component {
     });
   }
 
-  // <input className="form-control" type="text" value={props.newQuery}/>
-  // <button className="btn hidden-sm-down" onClick={() => props.newSearch(props.newQuery)}>
-
-  // updatingSearch (search) {
-  //   var newVideo = {
-  //     query: search,
-  //     max: 5,
-  //     key: YOUTUBE_API_KEY
-  //   };
-
-  //   this.props.searchYouTube(newVideo, (data) => {
-  //     this.setState({
-  //       singleVideo: data[0],
-  //       videoListing: data
-  //     });
-  //   });
-  // }
-
   onVideoClick (video) {
     this.setState ({
       singleVideo: video
@@ -91,8 +73,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            {/* <div><h5><em><Search updateSearch={this.newSearch.bind(this)} newQuery={this.state.query} /></em></h5></div> */}
-            <div><h5><em><Search updateSearch={this.newSearch.bind(this)} newQuery={this.state.query} onUserInputChange={this.onUserInputChange.bind(this)}/></em></h5></div>
+            <div><h5><em><Search updateSearch={this.newSearch.bind(this)} onUserInputChange={this.onUserInputChange.bind(this)}/></em></h5></div>
           </div>
         </nav>
         <div className="row">
