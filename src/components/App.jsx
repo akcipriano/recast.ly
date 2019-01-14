@@ -21,8 +21,7 @@ class App extends React.Component {
             }
           }
         }
-      },
-      query: ''
+      }
     };
   }
 
@@ -41,27 +40,27 @@ class App extends React.Component {
     });
   }
 
-  onUserInputChange (event) {
-    this.setState ({
-      query: event.target.value
-    });
-  }
+  newSearch (event) {
 
-  newSearch () {
     var searchedVideo = {
-      query: this.state.query,
+      query: event.target.value,
       max: 5,
       key: YOUTUBE_API_KEY
     };
 
-    this.props.searchYouTube(searchedVideo, (data) => {
+    var search = this.props.searchYouTube.bind(this, searchedVideo, (data) => {
       this.setState({
         singleVideo: data[0],
         videoListing: data
       });
     });
+
+    var bounced = _.debounce(search, 500);
+
+    bounced();
   }
 
+  //when choosing a video to play from the list
   onVideoClick (video) {
     this.setState ({
       singleVideo: video
@@ -73,7 +72,8 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em><Search updateSearch={this.newSearch.bind(this)} onUserInputChange={this.onUserInputChange.bind(this)}/></em></h5></div>
+            <div><h5><em><Search updateSearch={this.newSearch.bind(this)}/></em></h5></div>
+            {/* <div><h5><em><Search updateSearch={this.newSearch.bind(this)} onUserInputChange={this.onUserInputChange.bind(this)}/></em></h5></div> */}
           </div>
         </nav>
         <div className="row">

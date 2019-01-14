@@ -1,7 +1,6 @@
-import App from './App.js';
 var Search = (props) => (
   <div className="search-bar form-inline">
-    <input className="form-control" type="text" onChange={props.onUserInputChange}/>
+    <input className="form-control" type="text" onChange={props.updateSearch} onKeyUp={props.updateSearch}/>
     <button className="btn hidden-sm-down" onClick={() => props.updateSearch()}>
       <span className="glyphicon glyphicon-search"></span>
     </button>
