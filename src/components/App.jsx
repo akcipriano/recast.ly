@@ -21,7 +21,8 @@ class App extends React.Component {
             }
           }
         }
-      }
+      },
+      query: ''
     };
   }
 
@@ -40,10 +41,15 @@ class App extends React.Component {
     });
   }
 
-  newSearch (event) {
+  onUserInputChange (event) {
+    this.setState ({
+      query: event.target.value
+    });
+  }
 
+  newSearch () {
     var searchedVideo = {
-      query: event.target.value,
+      query: this.state.query,
       max: 5,
       key: YOUTUBE_API_KEY
     };
@@ -72,8 +78,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em><Search updateSearch={this.newSearch.bind(this)}/></em></h5></div>
-            {/* <div><h5><em><Search updateSearch={this.newSearch.bind(this)} onUserInputChange={this.onUserInputChange.bind(this)}/></em></h5></div> */}
+            <div><h5><em><Search updateSearch={this.newSearch.bind(this)} onUserInputChange={this.onUserInputChange.bind(this)}/></em></h5></div>
           </div>
         </nav>
         <div className="row">
